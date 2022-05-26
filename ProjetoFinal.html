@@ -1,0 +1,219 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>
+        Aula 01 - JQuery Mobile
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- JQuery Mobile -->
+    <link rel="stylesheet" href="./css/themes/coolors.css" />
+    <link rel="stylesheet" href="./css/themes/jquery.mobile.icons.min.css" />
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css">
+    <link rel="stylesheet" href="./css/themes/style.css" />
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <script type="text/javascript">
+        function mascaraFone(i) {
+            const v = i.value;
+            if (isNaN(v[v.length - 1])) {
+                i.value = v.substring(0, v.length - 1);
+                return;
+            }
+            i.setAttribute("maxlength", "15");
+            if (v.length == 1) i.value = "(" + i.value;
+            if (v.length == 3) i.value += ") ";
+            if (v.length == 10) i.value += "-";
+        }
+
+        function mascaraCPF(i) {
+            let cpf = i.value;
+            cpf = cpf.replace(/[^\d]/g, "");
+            i.value = cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+        }
+    </script>
+</head>
+
+<body>
+    <div data-role="page" data-theme="a" id="pg1">
+        <div data-role="header" data-theme="a">
+            <h1> Projeto Final </h1>
+        </div>
+        <div role="main" class="ui-content">
+            <!-- Corpo da pág. -->
+            <div data-role="panel" id="painel" data-display="overlay" data-theme="a">
+                <!-- painel lateral -->
+                <div class="ui-panel-inner">
+                    <ul class="ui-listview">
+                        <li class="ui-first-child" data-icon="home" data-theme="a">
+                            <a href="#painel" class="ui-btn ui-btn-icon-right ui-icon-home">Home</a>
+                        </li>
+                        <li>
+                            <a href="#modalcms" class="ui-btn ui-btn-icon-right ui-icon-carat-r" rel="modal:open" data-transition="pop">Sobre CMS</a>
+                        </li>
+                        <li>
+                            <a href="#modalseo" class="ui-btn ui-btn-icon-right ui-icon-carat-r" rel="modal:open" data-transition="pop">Sobre SEO</a>
+                        </li>
+                        <li>
+                            <a href="#modaljquery" class="ui-btn ui-btn-icon-right ui-icon-carat-r" rel="modal:open" data-transition="pop">Sobre JQuery Mobile</a>
+                        </li>
+                        <li>
+                            <a href="#pgForm" class="ui-btn ui-btn-icon-right ui-icon-bars">Cadastro de Contato</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <a href="#painel" class="ui-btn">Saber Mais</a>
+            <br>
+            <br>
+            <div class="ui-grid-b ui-responsive">
+                <div class="ui-block-a">
+                    <a href="#modal" class="ui-btn ui-shadow ui-corner-all" rel="modal:open" data-transition="pop"> Modal </a>
+                </div>
+                <div class="ui-block-b">
+                    <a href="#pg2" class="ui-btn ui-shadow ui-corner-all"> Página 2 </a>
+                </div>
+                <div class="ui-block-c">
+                    <input type="button" value="Botão Fake">
+                </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="ui-corner-all">
+                <div class="ui-body ui-body-b">
+                    <p>
+                        Mussum Ipsum, cacilds vidis litro abertis. Si u mundo tá muito paradis? Toma um mé que o mundo vai gi
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div data-role="footer" id="footer" data-theme="a">
+            <span>&copy;</span>Todos os direitos reservados. Camila Camera
+        </div>
+    </div>
+
+    <div data-role="page" data-theme="a" id="pgForm">
+        <div data-role="header" data-theme="a">
+            <h1> Cadastro Usuário </h1>
+        </div>
+        <div role="main" class="ui-content" data-theme="a">
+            <div data-role="form" id="form" data-theme="a">
+                <form action="" method="">
+                    <label for="name">Nome*: </label>
+                    <input type="text" name="name" id="text-basic" required />
+
+                    <label for="email">Email/Login*: </label>
+                    <input type="email" name="email" id="email" placeholder="exemplo@email.com" required />
+
+                    <fieldset data-role="controlgroup">
+                        <legend>Perfil de Acesso:</legend>
+                        <label for="user">Usuário </label>
+                        <input type="radio" name="pAcesso" id="user" value="user" checked="checked" />
+                        <label for="admin">Admin </label>
+                        <input type="radio" name="pAcesso" id="admin" value="adm" />
+                    </fieldset>
+
+                    <label for="password">Senha de Acesso*: </label>
+                    <input type="password" name="password" id="password" autocomplete="off" maxlength="6" placeholder="Sua senha deve ter no máximo 6 digitos" required />
+
+                    <label for="nascimento">Nascimento: </label>
+                    <input type="date" name="date" id="nascimento" />
+
+                    <label for="tel">Telefone: </label>
+                    <input type="text" name="tel" id="tel" value="" oninput="mascaraFone(this)" placeholder="(00) 90000-0000" />
+
+                    <label for="name">CPF: </label>
+                    <input type="text" name="name" id="text-basic" value="" oninput="mascaraCPF(this)" maxlength="11" placeholder="000.000.000-00" />
+
+                    <button type="submit" class="ui-btn ui-shadow ui-corner-all">Enviar</button>
+                </form>
+            </div>
+            <br>
+            <br>
+            <a href="#pg1" class="ui-btn ui-shadow ui-corner-all"> Voltar </a>
+        </div>
+        <div data-role="footer" data-theme="a">
+            <h4> Formulário</h4>
+        </div>
+    </div>
+
+    <!-- Inicio do Modal Botão -->
+    <div data-role="page" id="modal" data-dialog="true" data-theme="a">
+        <div data-role="header" data-theme="a">
+            <h2>Modal do site</h2>
+        </div>
+        <div data-role="main" class="ui-content" data-theme="a">
+            <h3> Exemplo de Modal </h3>
+            <p> Teste de implementação de modal com <b>JQuery Mobile</b>.</p>
+            <a href="#pg1" data-rel="back" class="ui-btn ui-shadow ui-corner-all ui-icon-back ui-btn-icon-left" data-theme="a"> Voltar para Página Principal</a>
+        </div>
+    </div>
+
+    <!-- Inicio do Modal CMS -->
+    <div data-role="page" id="modalcms" data-dialog="true" data-theme="a">
+        <div data-role="header" data-theme="a">
+            <h2>CMS</h2>
+        </div>
+        <div data-role="main" class="ui-content" data-theme="a">
+            <h3> O que é CMS? </h3>
+            <p> CMS representa Content Management System, ou Sistema de Gestão de Conteúdos. De forma bem direta, um CMS permite que você crie, organize, publique e apague conteúdos do seu site. Neste artigo você vai entender como e por que usar um CMS na
+                sua estratégia digital.</p>
+            <a href="#pg1" data-rel="back" class="ui-btn ui-shadow ui-corner-all ui-icon-back ui-btn-icon-left" data-theme="a"> Voltar para Página Principal</a>
+        </div>
+    </div>
+
+    <!-- Inicio do Modal SEO -->
+    <div data-role="page" id="modalseo" data-dialog="true" data-theme="a">
+        <div data-role="header" data-theme="a">
+            <h2>SEO</h2>
+        </div>
+        <div data-role="main" class="ui-content" data-theme="a">
+            <h3> O que é SEO? </h3>
+            <p>
+                SEO é a sigla de Search Engine Optimization (otimização de mecanismos de busca) e é o conjunto de técnicas usadas, geralmente divididas entre tecnologia, conteúdo e autoridade, para alcançar bom posicionamento de páginas de um site no Google e em outros
+                buscadores, gerando tráfego orgânico.
+            </p>
+            <a href="#pg1" data-rel="back" class="ui-btn ui-shadow ui-corner-all ui-icon-back ui-btn-icon-left" data-theme="a"> Voltar para Página Principal</a>
+        </div>
+    </div>
+
+    <!-- Inicio do Modal SEO -->
+    <div data-role="page" id="modaljquery" data-dialog="true" data-theme="a">
+        <div data-role="header" data-theme="a">
+            <h2>JQuery Mobile</h2>
+        </div>
+        <div data-role="main" class="ui-content" data-theme="a">
+            <h3> O que é JQuery Mobile? </h3>
+            <p>
+                jQuery Mobile é um framework para desenvolvimento web, personalizado para a interação por toque, excelente para a criação de aplicações para dispositivos móveis. Esta é a principal tecnologia, em termos de framework, usada neste projeto.
+            </p>
+            <a href="#pg1" data-rel="back" class="ui-btn ui-shadow ui-corner-all ui-icon-back ui-btn-icon-left" data-theme="a"> Voltar para Página Principal</a>
+        </div>
+    </div>
+
+    <!-- Inicio da Pagina 2 -->
+    <div data-role="page" data-theme="a" id="pg2">
+        <div data-role="header" data-theme="a">
+            <h1> Página 2 - Teste Multipages em Single Page</h1>
+            <div role="main" class="ui-content" data-theme="a">
+                <h2>Bla bla bla</h2>
+                <p data-theme="a">
+                    <b>Mussum Ipsum</b>, cacilds vidis litro abertis. Delegadis gente finis, bibendumegestasaugue arcu ut est.Aenean aliquam molestie leo, vitae iaculis nisl.Quem manda na minha terra s
+                </p>
+                <br>
+                <a href="#pg1" class="ui-btn ui-shadow ui-corner-all" data-theme="a"> Voltar </a>
+            </div>
+        </div>
+        <div data-role="footer" data-theme="a">
+            <h4> Página ID2.</h4>
+        </div>
+    </div>
+
+</body>
+
+</html>
